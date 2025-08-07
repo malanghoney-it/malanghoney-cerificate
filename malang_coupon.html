@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>말랑하니 모바일상품권</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Apple SD Gothic Neo", sans-serif;
+        background-color: #e6e5e1;
+        color: #333;
+        text-align: center;
+      }
+
+      .group_preview {
+        padding: 20px 16px;
+        max-width: 480px;
+        margin: auto;
+      }
+
+      .tit_head {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      .inner_preview {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .thumb_g {
+        width: 100%;
+        max-width: 320px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+      }
+
+      .item_coupon {
+        font-size: 1.1rem;
+        font-family: "Roboto", sans-serif;
+        word-break: break-all;
+        margin-bottom: 12px;
+      }
+
+      .btn_item {
+        margin: 0;
+        padding: 0;
+        border: 0 none;
+        border-radius: 0;
+        background-color: transparent;
+        cursor: pointer;
+        font-weight: 400;
+        font-family: "Noto Sans", Roboto, "Apple SD Gothic Neo", "Malgun Gothic",
+          "맑은 고딕", sans-serif;
+        display: inline-block;
+        margin-top: 9px;
+        border-bottom: 3px solid #fee500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #666;
+        vertical-align: top;
+      }
+
+      .btn_comm {
+        display: block;
+        width: 100%;
+        padding: 14px 0;
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #fee500;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 16px 0;
+      }
+
+      .desc_item {
+        font-size: 0.95rem;
+        background-color: #fbfaf6;
+        padding: 12px;
+        border-left: 4px solid #ffca28;
+        border-radius: 6px;
+        text-align: left;
+      }
+
+      .txt_roboto {
+        font-family: "Roboto", sans-serif;
+      }
+
+      @media (max-width: 480px) {
+        .tit_head {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="group_preview">
+      <div class="tit_head">말랑하니 모바일상품권</div>
+
+      <div class="inner_preview">
+        <img
+          src="https://malanghoney.com/web/product/medium/202507/a98d40deec0624282a0edaa3267333fc.jpg"
+          class="thumb_g"
+          alt="쿠폰 이미지"
+        />
+
+        <div class="item_coupon">
+          <div class="txt_item txt_roboto" id="couponCode">MALANG2025</div>
+          <button type="button" class="btn_item" id="copyBtn">
+            쿠폰번호 복사하기
+          </button>
+        </div>
+        <div class="tit_head">말랑하니 모바일 상품권 10만원</div>
+        <button type="button" class="btn_comm" id="moveBtn">
+          쿠폰번호 등록하기
+        </button>
+
+        <p class="desc_item">
+          📌 상품권 사용 방법<br />
+          1. [쿠폰번호 복사하기] 버튼을 누르세요.<br />
+          2. 노란색 [쿠폰번호 등록하기] 버튼을 누르세요.<br />
+          3. 말랑하니 온라인몰 쿠폰함에서 쿠폰번호를 등록하세요.<br />
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("copyBtn").addEventListener("click", () => {
+        const code = document.getElementById("couponCode").textContent;
+        navigator.clipboard
+          .writeText(code)
+          .then(() => {
+            alert("쿠폰번호가 복사되었습니다!");
+          })
+          .catch((err) => {
+            alert("❌ 복사 실패: " + err.message);
+          });
+      });
+
+      document.getElementById("moveBtn").addEventListener("click", () => {
+        window.location.href =
+          "https://malanghoney.com/myshop/coupon/coupon.html";
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const couponCode = urlParams.get("couponCode");
+
+      const couponCodeDiv = document.querySelector("#couponCode");
+      if (couponCode) {
+        couponCodeDiv.innerHTML = couponCode;
+      } else {
+        couponCodeDiv.innerHTML = "잘못된 접근이에요.";
+      }
+    </script>
+  </body>
+</html>
